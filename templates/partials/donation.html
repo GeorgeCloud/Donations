@@ -1,0 +1,11 @@
+<div class="card col-sm-5 me-5">
+  <div class="card-header">
+    {{ 'Nemo' or donation.donor_name }}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{donation.message}}</p>
+      <footer class="blockquote-footer">{{donation.amount}}</footer>
+    </blockquote>
+  </div>
+</div>

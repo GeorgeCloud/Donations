@@ -1,0 +1,15 @@
+
+<form action="/donation/create" method="POST">
+  <fieldset>
+    <legend>Donate</legend>
+    <p><em>For every $10 you will help cloth 2 children</em></p>
+
+    <input type="hidden" value="{{ charity._id }}" name="charity_id">
+    $<input type="number" placeholder="5.00" name="amount">
+    <input type="text" placeholder="Message" name="message">
+    <input type="submit" value="Send Donation"><br>
+  </fieldset>
+</form>
+
+
+
