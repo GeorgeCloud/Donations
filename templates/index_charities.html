@@ -6,15 +6,16 @@
 
 {% block body %}
   <div class="container">
-    <div class="row row-cols-2">
+    <div class="row row">
       {% for charity in charities %}
-        <div class="card">
-          <img src="{{ url_for('static', filename='images/charity.png') }}" class="card-img-top" alt="Charity Profile Picture">
-          <div class="card-body">
-            <p class="card-text">{{charity.name}}</p>
-            <a href="{{ url_for('view_charity', charity_id=charity._id) }}">visit</a>
-          </div>
+      <div class="card m-3" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='/images/charity.png') }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{charity.name}}</h5>
+          <p class="card-text">Charity Description.</p>
+          <a href="{{ url_for('show_charity', charity_id=charity._id) }}" class="btn btn-primary">Visit now</a>
         </div>
+      </div>
       {% endfor %}
     </div>
   </div>

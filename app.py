@@ -11,8 +11,12 @@ db = client.get_default_database()
 charities = db.charities
 donations = db.donations
 
-def create_charity(charity_name):
-    charities.insert_one({'name': charity_name})
+def create_charity(charity_name, description):
+    charities.insert_one({
+        'name': charity_name,
+        'description': description,
+        'created_on': 'datetime',
+    })
 
 def create_donation_document(request_form):
     donation = {
@@ -25,16 +29,17 @@ def create_donation_document(request_form):
 
 @app.route('/', methods=['GET'])
 def charity_index():
+    sorting_method = 'x' or request.form['sorting_method']
     all_charities = charities.find({})
 
     return render_template('index_charities.html', charities=all_charities)
 
 @app.route('/charity/<charity_id>', methods=['GET'])
-def view_charity(charity_id):
+def show_charity(charity_id):
     current_charity = charities.find_one({'_id': ObjectId(charity_id)})
     charity_donations = donations.find({'charity_id': charity_id})
 
-    return render_template('view_charity.html', charity=current_charity, donations=charity_donations)
+    return render_template('show_charity.html', charity=current_charity, donations=charity_donations)
 
 @app.route('/donation/create', methods=['POST'])
 def create_donation():
@@ -42,7 +47,7 @@ def create_donation():
 
     donations.insert_one(new_donation)
 
-    return redirect(url_for('view_charity', charity_id=request.form['charity_id']))
+    return redirect(url_for('show_charity', charity_id=request.form['charity_id']))
 
 
 if __name__ == "__main__":
