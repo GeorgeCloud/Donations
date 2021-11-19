@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import gridfs
 import os
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ db = client.get_default_database()
 
 charities = db.charities
 donations = db.donations
+fs = gridfs.GridFS(db)
 
 def create_charity(charity_name, description):
     charities.insert_one({
@@ -33,6 +35,10 @@ def charity_index():
     all_charities = charities.find({})
 
     return render_template('index_charities.html', charities=all_charities)
+
+@app.route('/charity/new', methods=['GET'])
+def new_charity():
+    return render_template('new_charity.html')
 
 @app.route('/charity/<charity_id>', methods=['GET'])
 def show_charity(charity_id):
