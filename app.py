@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import gridfs
+import datetime
 import os
 app = Flask(__name__)
 
@@ -15,9 +16,10 @@ fs = gridfs.GridFS(db)
 
 def create_charity(charity_name, description):
     charities.insert_one({
-        'name': charity_name,
+        'name': charity_name.title(),
         'description': description,
-        'created_on': 'datetime',
+        'total_received': 0,
+        'created_on': datetime.datime.now(),
     })
 
 def create_donation_document(request_form):

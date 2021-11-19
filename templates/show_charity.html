@@ -10,7 +10,8 @@
         <div class="card container" style="width: 18rem;">
           <img src="{{ url_for('static', filename='images/charity.png') }}" class="card-img-top" alt="Charity Profile Picture">
           <div class="card-body">
-            <p class="card-text">{{charity.name}}</p>
+            <h5 class="card-text">{{charity.name}}</h5>
+            <p>{{charity.description}}</p>
           </div>
         </div>
       </div>
