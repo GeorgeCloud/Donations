@@ -19,7 +19,7 @@ def create_charity(charity_name, description):
         'name': charity_name.title(),
         'description': description,
         'total_received': 0,
-        'created_on': datetime.datime.now(),
+        'created_on': datetime.datetime.now(),
     })
 
 def create_donation_document(request_form):

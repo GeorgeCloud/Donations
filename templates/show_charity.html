@@ -8,10 +8,11 @@
     <div class="row m-5">
       <div class="col">
         <div class="card container" style="width: 18rem;">
-          <img src="{{ url_for('static', filename='images/charity.png') }}" class="card-img-top" alt="Charity Profile Picture">
+          <img src="{{ url_for('static', filename='images/charity.png') }}" class="card-img-top mt-3" alt="Charity Profile Picture">
           <div class="card-body">
             <h5 class="card-text">{{charity.name}}</h5>
             <p>{{charity.description}}</p>
+            <p>Created on: {{charity.created_on}}</p>
           </div>
         </div>
       </div>
@@ -23,7 +24,7 @@
       <div class="col">
         <div class="container">
           <div class="row row-cols-1">
-            <h1>Donations</h1>
+            <legend><b>{{donations.count()}} Donations have been made</b></legend>
             {% if donations.count() > 0 %}
               {% for donation in donations %}
 
